@@ -12,7 +12,7 @@ Visit us at: http://www.blacktemplars.altervista.org/
 You are not allowed to modify this file and redistribute it without permission given by me (Giallustio).
 */
 
-private ["_chopper","_exit","_cargo","_cantsee","_index","_last_index","_can_lift","_cargo_pos","_rel_pos","_cargo_x","_cargo_y","_cargo_z","_hud_y","_hud_x","_rel_y","_hud_x_1","_hud_y_1","_pic_cargo","_name_cargo","_text_action","_cargo_array","_array","_ui","_hud","_radar","_obj_img","_obj_pic","_arrow","_obj_name","_array_hud"];
+private ["_chopper","_exit","_cargo","_cantsee","_index","_last_index","_can_lift","_cargo_pos","_rel_pos","_cargo_x","_cargo_y","_cargo_z","_hud_y","_hud_x","_rel_y","_hud_x_1","_hud_y_1","_pic_cargo","_name_cargo","_text_action","_cargo_array","_array","_ui","_hud","_radar","_obj_img","_obj_pic","_arrow","_obj_name","_array_hud","_locked"];
 if (isDedicated) exitwith {};
 
 disableSerialization;
@@ -91,7 +91,8 @@ while {true} do
 			{_x ctrlShow false} foreach _array_hud;
 			BTC_Hud_Shown = false;
 		};
-		if (_cargo isKindOf "Air" && getdammage _cargo != 1) then {
+		_locked = locked _cargo;
+		if (_cargo isKindOf "Air" && getdammage _cargo != 1 or _locked) then {
 			_can_lift = false;
 		};
 		if (!isNull _cargo && _can_lift) then {
